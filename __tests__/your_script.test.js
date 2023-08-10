@@ -61,4 +61,16 @@ describe('validateElementsString', () => {
     const EXPECTED = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
     expect(result).toEqual(EXPECTED);
   });
+
+  it('should filter out invalid elements', () => {
+    // Define the invalid elements string
+    const ELEMENTS_STRING = '1,2,1,1,3,hello,invalid!,4,1,2,hello,text';
+
+    // Call validateElementsString on the invalid elements string
+    const result = validateElementsString(ELEMENTS_STRING);
+
+    // Expect a list of valid elements
+    const EXPECTED = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
+    expect(result).toEqual(EXPECTED);
+  });
 });
