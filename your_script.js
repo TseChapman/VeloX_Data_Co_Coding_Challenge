@@ -27,6 +27,10 @@ function validateElementsString(elementsString) {
 
 // Step 1: Count unique elements
 async function step1(elements) {
+  if (elements === null || !Array.isArray(elements)) {
+    throw new Error('step1: Expect array type from elements');
+  }
+
   const counts = {};
 
   for (const element of elements) {
