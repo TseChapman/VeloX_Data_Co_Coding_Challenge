@@ -136,3 +136,24 @@ describe('step1', () => {
     }
   });
 });
+
+describe('step2', () => {
+  it('should find and sort indices of matching items by numbers followed by text in ascending order', async () => {
+    // Define the elements input for calling step1 and the expected result from calling step1
+    const INPUT = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
+    const EXPECTED = {
+      '1': [0, 2, 3, 7],
+      '2': [1, 8],
+      '3': [4],
+      '4': [6],
+      'hello': [5, 9],
+      'text': [10],
+    };
+
+    // Call step1 using the elements input
+    const result = await step2(INPUT);
+
+    // Verify the result is equal to the expected sorted object
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(EXPECTED));
+  });
+});
