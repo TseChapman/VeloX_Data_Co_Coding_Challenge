@@ -64,8 +64,47 @@ async function step1(elements) {
   return sortedCounts;
 }
 
+// Step 2: Find indices of matching items
+async function step2(elements) {
+  const indices = {};
+
+  for (let i = 0; i < elements.length; i++) {
+    if (!indices[elements[i]]) {
+      indices[elements[i]] = [];
+    }
+    indices[elements[i]].push(i);
+  }
+
+    // Sort the indices by key, starting from number to text
+    const sortedKeys = Object.keys(indices).sort((a, b) => {
+      const aIsNumber = !isNaN(a);
+      const bIsNumber = !isNaN(b);
+
+      if (aIsNumber && bIsNumber) {
+        return a - b;
+      } else if (aIsNumber) {
+        return -1;
+      } else if (bIsNumber) {
+        return 1;
+      } else {
+        return a.localeCompare(b);
+      }
+    });
+
+    // create a sorted indices and return it
+    const sortedIndices = {};
+    for (const key of sortedKeys) {
+      sortedIndices[key] = indices[key];
+    }
+
+  console.log("Step 2 Result: ", JSON.stringify(sortedIndices, null, 2));
+  console.log("==============================================");
+  return sortedIndices;
+}
+
 module.exports = {
   readFileByFileName,
   validateElementsString,
   step1,
+  step2,
 }
