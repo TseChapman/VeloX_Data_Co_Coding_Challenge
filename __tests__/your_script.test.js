@@ -21,4 +21,15 @@ describe('readFileByFileName', () => {
     expect(result).toBe(EXPECTED_RESULT);
     expect(fs.readFile).toHaveBeenCalledWith(FILENAME, 'utf-8');
   });
+
+  it('should handle file read errors', async () => {
+    const FILENAME = 'nonExistentFile.txt'; // A non-existent file name
+
+    // Mock fs.readFile to throw an error
+    fs.readFile = jest.fn().mockRejectedValue(new Error('File not found'));
+
+    // Expect the function to throw exception on running fs.readFile on non-existent file
+    await expect(readFileByFileName(FILENAME)).rejects.toThrowError('readFileByFileName: File not found');
+    expect(fs.readFile).toHaveBeenCalledWith(FILENAME, 'utf-8');
+  });
 });
