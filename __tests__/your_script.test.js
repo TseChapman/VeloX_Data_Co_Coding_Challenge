@@ -85,4 +85,18 @@ describe('validateElementsString', () => {
     const EXPECTED = [];
     expect(result).toEqual(EXPECTED);
   });
+
+  it('should throws error when string is not inputted', () => {
+    // Define the non-string input
+    const NON_STRING = 1;
+
+    try {
+      validateElementsString(NON_STRING);
+      // If the function doesn't throw an error, fail the test
+      fail('Expected an error to be thrown');
+    } catch (error) {
+      // Verify the error message
+      expect(error.message).toBe('validateElementsString: Expect string from elementsString');
+    }
+  });
 });
