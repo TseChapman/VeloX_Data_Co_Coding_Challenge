@@ -1,5 +1,6 @@
 const {
   readFileByFileName,
+  validateElementsString,
 } = require('../your_script');
 
 const fs = require('fs').promises;

@@ -14,6 +14,14 @@ async function readFileByFileName(filePath) {
   }
 }
 
+// Helper function to validate elements in a comma separated elements string
+function validateElementsString(elementsString) {
+  const VALID_ELEMENT_REGEX = /^[a-zA-Z0-9]+$/;
+  const elements = elementsString.split(',');
+  return elements.filter(element => VALID_ELEMENT_REGEX.test(element));
+}
+
 module.exports = {
   readFileByFileName,
+  validateElementsString,
 }
