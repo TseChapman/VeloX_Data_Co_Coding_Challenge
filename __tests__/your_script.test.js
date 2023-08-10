@@ -73,4 +73,16 @@ describe('validateElementsString', () => {
     const EXPECTED = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
     expect(result).toEqual(EXPECTED);
   });
+
+  it('should handle empty string', () => {
+    // Define the empty elements string
+    const ELEMENTS_STRING = '';
+
+    // Call validateElementsString on the empty elements string
+    const result = validateElementsString(ELEMENTS_STRING);
+
+    // Expect an empty list
+    const EXPECTED = [];
+    expect(result).toEqual(EXPECTED);
+  });
 });
