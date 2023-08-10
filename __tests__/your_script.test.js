@@ -47,3 +47,17 @@ describe('readFileByFileName', () => {
     }
   });
 });
+
+describe('validateElementsString', () => {
+  it('should return an array of valid elements', () => {
+    // Define the valid elements string
+    const ELEMENTS_STRING = '1,2,1,1,3,hello,4,1,2,hello,text';
+
+    // Call validateElementsString on the valid elements string
+    const result = validateElementsString(ELEMENTS_STRING);
+
+    // Expect a list of valid elements
+    const EXPECTED = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
+    expect(result).toEqual(EXPECTED);
+  });
+});
