@@ -100,3 +100,24 @@ describe('validateElementsString', () => {
     }
   });
 });
+
+describe('step1', () => {
+  it('should count and sort unique elements by numbers followed by text in ascending order', async () => {
+    // Define the elements input for calling step1 and the expected result from calling step1
+    const INPUT = ['1', '2', '1', '1', '3', 'hello', '4', '1', '2', 'hello', 'text'];
+    const EXPECTED = {
+      '1': 4,
+      '2': 2,
+      '3': 1,
+      '4': 1,
+      'hello': 2,
+      'text': 1,
+    };
+
+    // Call step1 using the elements input
+    const result = await step1(INPUT);
+
+    // Verify the result is equal to the expected sorted object
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(EXPECTED));
+  });
+});
