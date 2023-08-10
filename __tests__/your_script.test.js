@@ -32,4 +32,18 @@ describe('readFileByFileName', () => {
     await expect(readFileByFileName(FILENAME)).rejects.toThrowError('readFileByFileName: File not found');
     expect(fs.readFile).toHaveBeenCalledWith(FILENAME, 'utf-8');
   });
+
+  it('should throws error when string is not inputted', async () => {
+    // Define the non-string input
+    const NON_STRING = 1;
+
+    try {
+      await readFileByFileName(NON_STRING);
+      // If the function doesn't throw an error, fail the test
+      fail('Expected an error to be thrown');
+    } catch (error) {
+      // Verify the error message
+      expect(error.message).toBe('readFileByFileName: Expect string from filePath');
+    }
+  });
 });
