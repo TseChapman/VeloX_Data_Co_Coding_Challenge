@@ -157,4 +157,18 @@ describe('step2', () => {
     // Verify the result is equal to the expected sorted object
     expect(JSON.stringify(result)).toEqual(JSON.stringify(EXPECTED));
   });
+
+  it('should throws error when array is not inputted', async () => {
+    // Define the non-string input
+    const NON_ARRAY = 1;
+
+    try {
+      await step2(NON_ARRAY);
+      // If the function doesn't throw an error, fail the test
+      fail('Expected an error to be thrown');
+    } catch (error) {
+      // Verify the error message
+      expect(error.message).toBe('step2: Expect array type from elements');
+    }
+  });
 });
