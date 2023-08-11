@@ -103,6 +103,34 @@ describe('validateElementsString', () => {
   });
 });
 
+describe('sortObjectKeys', () => {
+  it('should sort object keys with numbers followed by text in ascending order', () => {
+    // Define an object that is not ordered and the expected object from calling sortObjectKeys
+    const INPUT = {
+      '3': 1,
+      'hello': 2,
+      '1': 4,
+      'text': 1,
+      '4': 1,
+      '2': 2,
+    };
+    const EXPECTED = {
+      '1': 4,
+      '2': 2,
+      '3': 1,
+      '4': 1,
+      'hello': 2,
+      'text': 1,
+    };
+
+    // Run the sortObjectKeys using the unordered object
+    const sorted = sortObjectKeys(INPUT);
+
+    // Expect the sorted object to be the same as expected object
+    expect(sorted).toEqual(EXPECTED);
+  });
+});
+
 describe('step1', () => {
   it('should count and sort unique elements by numbers followed by text in ascending order', async () => {
     // Define the elements input for calling step1 and the expected result from calling step1
