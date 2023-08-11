@@ -102,6 +102,10 @@ async function step2(elements) {
 
 // Step 3: Combine step1 and step2 results, expect step1 and step2 to use the same elements
 function step3(counts, indices) {
+  if (counts === null || indices === null || typeof counts !== 'object' || typeof indices !== 'object') {
+    throw new Error('step3: Expect object type from counts or indices');
+  }
+
   const combined = {};
 
   for (const key in counts) {
