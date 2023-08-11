@@ -27,6 +27,11 @@ function validateElementsString(elementsString) {
 
 // Helper function to sort the object by the object keys starting from number to text
 function sortObjectKeys(object) {
+  // Check if object is valid
+  if (object === null || typeof object !== 'object') {
+    throw new Error('sortObjectKeys: Expect object type from object');
+  }
+
   // Sort the object by key, starting from number to text
   const sortedKeys = Object.keys(object).sort((a, b) => {
     const aIsNumber = !isNaN(a);
