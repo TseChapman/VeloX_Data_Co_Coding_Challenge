@@ -212,3 +212,61 @@ describe('step2', () => {
     }
   });
 });
+
+describe('step3', () => {
+  it('should combine counts and indices into a new object', () => {
+    // Define counts from step1
+    const counts = {
+      '1': 4,
+      '2': 2,
+      '3': 1,
+      '4': 1,
+      'hello': 2,
+      'text': 1,
+    };
+
+    // Define indices from step3
+    const indices = {
+      '1': [0, 2, 3, 7],
+      '2': [1, 8],
+      '3': [4],
+      '4': [6],
+      'hello': [5, 9],
+      'text': [10],
+    };
+
+    // Define the expected result from calling step3
+    const EXPECTED = {
+      '1': {
+        count: 4,
+        indices: [0, 2, 3, 7],
+      },
+      '2': {
+        count: 2,
+        indices: [1, 8],
+      },
+      '3': {
+        count: 1,
+        indices: [4],
+      },
+      '4': {
+        count: 1,
+        indices: [6],
+      },
+      'hello': {
+        count: 2,
+        indices: [5, 9],
+      },
+      'text': {
+        count: 1,
+        indices: [10],
+      },
+    };
+
+    // Call the step3 function using the counts and indices
+    const result = step3(counts, indices);
+
+    // Verify that the result is equal to the expected result
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(EXPECTED));
+  });
+});
