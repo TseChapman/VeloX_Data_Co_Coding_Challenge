@@ -270,4 +270,15 @@ describe('step3', () => {
     // Verify that the result is equal to the expected result
     expect(JSON.stringify(result)).toEqual(JSON.stringify(EXPECTED));
   });
+
+  it('should throws error when object type are not inputted', async () => {
+    try {
+      await step3(null, null);
+      // If the function doesn't throw an error, fail the test
+      fail('Expected an error to be thrown');
+    } catch (error) {
+      // Verify the error message
+      expect(error.message).toBe('step3: Expect object type from counts or indices');
+    }
+  });
 });
