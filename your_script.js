@@ -120,6 +120,41 @@ function step3(counts, indices) {
   return combined;
 }
 
+if (require.main === module) {
+  async function main() {
+    try {
+      // Check if the file path is inputted
+      const args = process.argv.slice(2);
+      if (args.length !== 1) {
+        throw new Error('Error: Please include a file path to read');
+      }
+
+      // Get the file path from argument
+      const FILEPATH = args[0];
+
+      // Read the elements string from the file
+      var elementsString = await readFileByFileName(FILEPATH);
+
+      // Validate the elements string
+      var elements = validateElementsString(elementsString);
+
+      // Step 1
+      const counts = await step1(elements);
+
+      // Step 2
+      const indices = await step2(elements);
+
+      // Step 3
+      step3(counts, indices);
+    } catch (error) {
+      console.error('An error occurred:', error.message);
+    }
+  }
+
+  // Run the main function
+  main();
+}
+
 module.exports = {
   readFileByFileName,
   validateElementsString,
