@@ -1,6 +1,7 @@
 const {
   readFileByFileName,
   validateElementsString,
+  sortObjectKeys,
   step1,
   step2,
 } = require('../your_script');

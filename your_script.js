@@ -25,20 +25,10 @@ function validateElementsString(elementsString) {
   return elements.filter(element => VALID_ELEMENT_REGEX.test(element));
 }
 
-// Step 1: Count unique elements
-async function step1(elements) {
-  if (elements === null || !Array.isArray(elements)) {
-    throw new Error('step1: Expect array type from elements');
-  }
-
-  const counts = {};
-
-  for (const element of elements) {
-    counts[element] = (counts[element] || 0) + 1;
-  }
-
-  // Sort the counts by key, starting from number to text
-  const sortedKeys = Object.keys(counts).sort((a, b) => {
+// Helper function to sort the object by the object keys starting from number to text
+function sortObjectKeys(object) {
+  // Sort the object by key, starting from number to text
+  const sortedKeys = Object.keys(object).sort((a, b) => {
     const aIsNumber = !isNaN(a);
     const bIsNumber = !isNaN(b);
 
@@ -53,11 +43,29 @@ async function step1(elements) {
     }
   });
 
-  // create a sorted counts and return it
-  const sortedCounts = {};
+  // create a sorted object and return it
+  const sortedObject = {};
   for (const key of sortedKeys) {
-    sortedCounts[key] = counts[key];
+    sortedObject[key] = object[key];
   }
+
+  return sortedObject;
+}
+
+// Step 1: Count unique elements
+async function step1(elements) {
+  if (elements === null || !Array.isArray(elements)) {
+    throw new Error('step1: Expect array type from elements');
+  }
+
+  const counts = {};
+
+  for (const element of elements) {
+    counts[element] = (counts[element] || 0) + 1;
+  }
+
+  // create a sorted counts and return it
+  const sortedCounts = sortObjectKeys(counts);
 
   console.log("Step 1 Result: ", JSON.stringify(sortedCounts, null, 2));
   console.log("==============================================");
@@ -79,27 +87,8 @@ async function step2(elements) {
     indices[elements[i]].push(i);
   }
 
-    // Sort the indices by key, starting from number to text
-    const sortedKeys = Object.keys(indices).sort((a, b) => {
-      const aIsNumber = !isNaN(a);
-      const bIsNumber = !isNaN(b);
-
-      if (aIsNumber && bIsNumber) {
-        return a - b;
-      } else if (aIsNumber) {
-        return -1;
-      } else if (bIsNumber) {
-        return 1;
-      } else {
-        return a.localeCompare(b);
-      }
-    });
-
     // create a sorted indices and return it
-    const sortedIndices = {};
-    for (const key of sortedKeys) {
-      sortedIndices[key] = indices[key];
-    }
+    const sortedIndices = sortObjectKeys(indices);
 
   console.log("Step 2 Result: ", JSON.stringify(sortedIndices, null, 2));
   console.log("==============================================");
@@ -109,6 +98,7 @@ async function step2(elements) {
 module.exports = {
   readFileByFileName,
   validateElementsString,
+  sortObjectKeys,
   step1,
   step2,
 }
