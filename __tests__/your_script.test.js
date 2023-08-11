@@ -4,6 +4,7 @@ const {
   sortObjectKeys,
   step1,
   step2,
+  step3,
 } = require('../your_script');
 
 const fs = require('fs').promises;

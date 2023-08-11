@@ -100,10 +100,27 @@ async function step2(elements) {
   return sortedIndices;
 }
 
+// Step 3: Combine step1 and step2 results, expect step1 and step2 to use the same elements
+function step3(counts, indices) {
+  const combined = {};
+
+  for (const key in counts) {
+    combined[key] = {
+      count: counts[key],
+      indices: indices[key],
+    };
+  }
+
+  console.log("Step 3 Result: ", JSON.stringify(combined, null, 2));
+  console.log("==============================================");
+  return combined;
+}
+
 module.exports = {
   readFileByFileName,
   validateElementsString,
   sortObjectKeys,
   step1,
   step2,
+  step3,
 }
