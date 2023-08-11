@@ -66,6 +66,10 @@ async function step1(elements) {
 
 // Step 2: Find indices of matching items
 async function step2(elements) {
+  if (elements === null || !Array.isArray(elements)) {
+    throw new Error('step2: Expect array type from elements');
+  }
+
   const indices = {};
 
   for (let i = 0; i < elements.length; i++) {
