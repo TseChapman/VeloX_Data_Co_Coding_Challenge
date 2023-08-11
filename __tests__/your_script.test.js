@@ -130,6 +130,17 @@ describe('sortObjectKeys', () => {
     // Expect the sorted object to be the same as expected object
     expect(sorted).toEqual(EXPECTED);
   });
+
+  it('should throws error when object type is not inputted', () => {
+    try {
+      sortObjectKeys(null);
+      // If the function doesn't throw an error, fail the test
+      fail('Expected an error to be thrown');
+    } catch (error) {
+      // Verify the error message
+      expect(error.message).toBe('sortObjectKeys: Expect object type from object');
+    }
+  });
 });
 
 describe('step1', () => {
